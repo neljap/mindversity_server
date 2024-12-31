@@ -101,4 +101,4 @@ const ContactRoute = router.post("/contact", async(req, res) => {
     res.status(500).send(`Internal Server Error, ${error}`)
   }
 })
-module.exports = {PayRoute, ContactRoute};
+module.exports = router;
