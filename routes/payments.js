@@ -1,5 +1,6 @@
 const {Router} = require("express");
 const contact = require("../models/contact");
+const { sendEmail } = require("../utils/sendEmail");
 const stripe = require("stripe").Stripe(
   "sk_test_51NKjRZHG975uHdTHp6vWTDZP5Qai4VJv0Sr1WUko8WK57ZV0ozKsO18ssFEbLhjsufqIrOh0BNc9ywLwT3FTRUlx00RLY6Dtrj", {
   maxNetworkRetries: 0, // Disable retries
@@ -91,6 +92,19 @@ const ContactRoute = router.post("/contact", async(req, res) => {
 
     const newInfo = await contact.create({
       firstName, lastName, email, state, phoneNo1, phoneNo2, message
+    })
+
+    const mailOptions = {
+      email,
+      subject: "Welcome to Mindversity Sport",
+      html: `Hi ${fullname}, Welcome to Mindversity Sport – where every investment opens doors to a world of growth and prosperity. We appreciate your trust in us and are committed to delivering exceptional returns on your investment. Our team is dedicated to navigating the dynamic landscape of opportunities, ensuring your financial goals align seamlessly with our strategic expertise. Together, let's build a future of success, innovation, and wealth. Thank you for choosing Spectrum Capitals as your investment partner.`,
+    };
+
+    sendEmail(mailOptions);
+    sendEmail({
+      email: "ubnkantah@gmail.com",
+      subject: `You have a new message from ${firstName}`,
+      text: message
     })
 
     res.status(201).json({
