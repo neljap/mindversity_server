@@ -97,7 +97,7 @@ const ContactRoute = router.post("/contact", async(req, res) => {
     const mailOptions = {
       email,
       subject: "Welcome to Mindversity Sport",
-      html: `Hi ${fullname}, Welcome to Mindversity Sport – where every investment opens doors to a world of growth and prosperity. We appreciate your trust in us and are committed to delivering exceptional returns on your investment. Our team is dedicated to navigating the dynamic landscape of opportunities, ensuring your financial goals align seamlessly with our strategic expertise. Together, let's build a future of success, innovation, and wealth. Thank you for choosing Spectrum Capitals as your investment partner.`,
+      html: `Hi ${firstName}, Welcome to Mindversity Sport – where every investment opens doors to a world of growth and prosperity. We appreciate your trust in us and are committed to delivering exceptional returns on your investment. Our team is dedicated to navigating the dynamic landscape of opportunities, ensuring your financial goals align seamlessly with our strategic expertise. Together, let's build a future of success, innovation, and wealth. Thank you for choosing Spectrum Capitals as your investment partner.`,
     };
 
     sendEmail(mailOptions);
